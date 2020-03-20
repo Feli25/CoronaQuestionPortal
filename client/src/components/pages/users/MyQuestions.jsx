@@ -32,7 +32,7 @@ export default class MyQuestions extends Component {
   render() {
     return <div style={{ padding: 30 }} className="displayChatsBox">
       <Typography variant="h6">
-        Explanation: Here the user can see all his done questions and read the answers from the doctors!
+        Hier sehen Sie alle Ihre Fragen. Klicken Sie auf die Frage um den kompletten Chat zu sehen!
       </Typography>
       {this.state.myChats.map((chat, i) => {
         return (<div key={i} onClick={() => this.openChat(chat._id)} className="chatBox">

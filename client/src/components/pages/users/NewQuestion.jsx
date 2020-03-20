@@ -41,13 +41,13 @@ export default class NewQuestions extends Component {
   render() {
     return <div style={{ padding: 30 }}>
       <Typography variant="h6">
-        Explanation: Users can create new questions here<br />
-        Hier können Sie eine neue Frage stellen! Diese wird dann so schnell wie möglich von unseren Ärzten beantwortet!
+        {/* Explanation: Users can create new questions here<br /> */}
+        Hier können Sie eine neue Fragen stellen! <br/>Diese wird dann so schnell wie möglich von unseren Ärzten beantwortet!
       </Typography>
       <form>
         <TextField
           variant="standard"
-          label="Titel der Frage"
+          label="Titel/Thema der Frage"
           type="text"
           value={this.state.title}
           name="title"
