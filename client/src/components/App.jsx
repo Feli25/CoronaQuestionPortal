@@ -10,22 +10,21 @@ import Signup from './pages/Signup'
 import api from '../api'
 
 export default class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     countries: [],
-  //   }
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+    }
+  }
   handleLogoutClick(e) {
     api.logout()
-    window.location.reload();
+    window.location.reload()
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">HS Be strong - Medizinische Hilfe</h1>
+          <h1 className="App-title">HS Be strong - Medizinische Online Hilfe</h1>
           <NavLink to="/" exact>
             Home
           </NavLink>
@@ -43,10 +42,10 @@ export default class App extends Component {
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/doctor/allQuestions" component={AllQuestions} />
-          <Route path="/doctor/myChats" component={MyChats} />
-          <Route path="/user/myQuestions" component={MyQuestions} />
-          <Route path="/user/newQuestion" component={NewQuestion} />
+          <Route path="/doctor/allQuestions" component={(api.isLoggedIn() && api.isDoctor()) ? AllQuestions : Home} />
+          <Route path="/doctor/myChats" component={(api.isLoggedIn() && api.isDoctor()) ? MyChats : Home} />
+          <Route path="/user/myQuestions" component={(api.isLoggedIn() && api.isUser()) ? MyQuestions : Home} />
+          <Route path="/user/newQuestion" component={(api.isLoggedIn() && api.isUser()) ? NewQuestion : Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route render={() => <h2>404</h2>} />
