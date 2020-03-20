@@ -9,7 +9,6 @@ export default class Home extends Component {
       //   <p>Um Fragen an unsere Ärzte zu stellen müssen Sie einen Account erstellen(Signup)<br />
       <div className="Home" style={{ margin: 20, padding: 30 }}>
         <Typography variant="h4">Wilkommen auf unserer Hilfeseite</Typography>
-        <h2>Wilkommen</h2>
         <p>
           Herzlich Willkommen auf der Seite für Medizinische Online Hilfe zum Thema COVID-19 im Kreis Heinsberg!
           <br />Wir werden hier nach bestem Wissen und Gewissen eure Fragen rund um eure gesundheitlichen Probleme beantworten!
