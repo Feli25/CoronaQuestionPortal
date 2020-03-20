@@ -25,7 +25,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Corona Question Portal</h1>
+          <h1 className="App-title">HS Be strong - Medizinische Hilfe</h1>
           <NavLink to="/" exact>
             Home
           </NavLink>

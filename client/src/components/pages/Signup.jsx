@@ -6,7 +6,6 @@ export default class Signup extends Component {
     super(props)
     this.state = {
       username: '',
-      name: '',
       password: '',
       message: null,
     }
@@ -23,7 +22,6 @@ export default class Signup extends Component {
     e.preventDefault()
     let data = {
       username: this.state.username,
-      name: this.state.name,
       password: this.state.password,
     }
     api
@@ -46,14 +44,6 @@ export default class Signup extends Component {
             type="text"
             value={this.state.username}
             name="username"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          Name:{' '}
-          <input
-            type="text"
-            value={this.state.name}
-            name="name"
             onChange={this.handleInputChange}
           />{' '}
           <br />

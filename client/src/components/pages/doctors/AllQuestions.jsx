@@ -2,34 +2,28 @@ import React, { Component } from 'react'
 import api from '../../../api'
 
 export default class AllQuestions extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     countries: [],
-  //   }
-  // }
-  // render() {
-  //   return (
-  //     <div className="Countries">
-  //       <h2>List of countries</h2>
-  //       {this.state.countries.map(c => (
-  //         <li key={c._id}>{c.name}</li>
-  //       ))}
-  //     </div>
-  //   )
-  // }
-  // componentDidMount() {
-  //   api
-  //     .getCountries()
-  //     .then(countries => {
-  //       console.log(countries)
-  //       this.setState({
-  //         countries: countries,
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+  state = {
+    opendChats: []
+  }
+  componentDidMount() {
+    api.findAllChatsNoDoctor()
+      .then(response => {
+        console.log(response)
+        this.setState({ opendChats: response })
+      })
+      .catch(err => console.log(err))
+  }
+  acceptChat = (chatId) => {
+    api.addDoctorToChat(chatId)
+  }
   render() {
-    return <div>AllQuestions doctors display here</div>
+    return <div>AllQuestions doctors display here
+      {this.state.opendChats.map((chat, i) => {
+      return (<div key={i}>
+        {chat.title}
+        <button onClick={(e) => this.acceptChat(chat._id)}>Frage annehmen und beantworten</button>
+      </div>)
+    })}
+    </div>
   }
 }

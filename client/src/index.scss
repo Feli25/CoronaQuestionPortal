@@ -97,3 +97,16 @@ body {
     color: $primary;
   }
 }
+
+.messagesContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.classRight{
+  align-items: flex-end;
+}
+
+.classLeft{
+  align-items: flex-start;
+}
