@@ -31,15 +31,15 @@ const theme = createMuiTheme({
 });
 
 export default class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     countries: [],
-  //   }
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: api.getUser()
+    }
+  }
   handleLogoutClick(e) {
     api.logout()
-    window.location.reload();
+    window.location.reload()
   }
 
   render() {

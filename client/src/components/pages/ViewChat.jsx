@@ -11,6 +11,7 @@ export default class ViewChat extends Component {
   }
   componentDidUpdate() {
     if (this.props.chatId && this.props.chatId !== this.state.chatId) {
+      this.interval = setInterval(() => this.updateMessages(), 1000);
       this.setState({ chatId: this.props.chatId })
       this.updateMessages()
     }
@@ -31,19 +32,25 @@ export default class ViewChat extends Component {
     this.setState({ inputField: "" })
     this.updateMessages()
   }
+  onClose = () => {
+    clearInterval(this.interval);
+    this.props.onClose()
+  }
   render() {
-    return <dialog open={this.props.open} onClose={this.props.onClose}>
-      <button onClick={this.props.onClose}>X CLose</button><br /><br />
+    return <dialog open={this.props.open} onClose={this.props.onClose} className="chatPopup">
+      <button onClick={this.onClose}>X Schließen</button><br /><br />
       <div className="messagesContainer">
         {this.state.messages.map((messages, id) => {
-          console.log(messages, messages._creator === this.state.user._id)
-          return (<div key={id} className={messages._creator === this.state.user._id ? "classRight" : "classLeft"}>
+          console.log(messages._creator === this.state.user._id)
+          return (<div key={id} className={messages._creator._id === this.state.user._id ? "speechbubble sb1" : "speechbubble sb2"}>
+            {messages._creator.username}:<br />
             {messages.content}
           </div>)
         })}<br />
       </div>
       <TextField value={this.state.inputField} onChange={(e) => { this.setState({ inputField: e.target.value }) }} />
       <Button variant='contained' color='primary' onClick={this.submitNewMessage}>Nachricht senden ></Button>
+      <Button variant='contained' onClick={this.onClose}>X Schließen</Button>
     </dialog>
   }
 }

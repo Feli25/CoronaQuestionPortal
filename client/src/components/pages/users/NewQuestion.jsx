@@ -40,7 +40,10 @@ export default class NewQuestions extends Component {
   }
   render() {
     return <div style={{ padding: 30 }}>
-      <Typography variant="h6">New Questions users display here</Typography>
+      <Typography variant="h6">
+        Explanation: Users can create new questions here<br />
+        Hier können Sie eine neue Frage stellen! Diese wird dann so schnell wie möglich von unseren Ärzten beantwortet!
+      </Typography>
       <form>
         <TextField
           variant="standard"
