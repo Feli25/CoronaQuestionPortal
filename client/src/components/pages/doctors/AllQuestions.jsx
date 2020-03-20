@@ -10,6 +10,7 @@ export default class AllQuestions extends Component {
     this.findChats()
   }
   findChats = () => {
+    console.log("findingChats and update")
     api.findAllChatsNoDoctor()
       .then(response => {
         console.log(response)
@@ -18,19 +19,20 @@ export default class AllQuestions extends Component {
       .catch(err => console.log(err))
   }
   acceptChat = (chatId) => {
+    console.log("acceptingChat")
     api.addDoctorToChat(chatId)
     this.findChats()
   }
   render() {
     return <div>
-      Explanation: All doctors can see all questions here and take one to their own and answer open ones
+      {/* Explanation: All doctors can see all questions here and take one to their own and answer open ones */}
       Hier sehen sie alle offenen Fragen.<br />
       <Typography>
         Wenn sie auf Frage annehmen und beantworten klicken, wird die Frage unter Meine Chats verschoben!
       </Typography>
       {this.state.opendChats.map((chat, i) => {
         return (<div key={i}>
-          <Card >
+          <Card>
             <CardContent>
               <Typography variant="body2" component="p">
                 {chat.title} von {chat._user.username}
@@ -38,6 +40,7 @@ export default class AllQuestions extends Component {
             </CardContent>
             <CardActions>
               <Button
+              style={{margin:"auto"}}
                 variant='contained'
                 onClick={(e) => this.acceptChat(chat._id)}
               >
