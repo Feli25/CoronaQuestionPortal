@@ -48,7 +48,8 @@ export default class ViewChat extends Component {
         })}<br />
       </div>
       <input value={this.state.inputField} onChange={(e) => { this.setState({ inputField: e.target.value }) }} />
-      <button onClick={this.submitNewMessage}>Nachricht senden ></button>
+      <button onClick={this.submitNewMessage}>Nachricht senden ></button><br /><br />
+      <button onClick={this.onClose}>X Schließen</button><br /><br />
     </dialog>
   }
 }
