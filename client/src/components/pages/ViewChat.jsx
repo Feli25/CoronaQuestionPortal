@@ -53,7 +53,7 @@ export default class ViewChat extends Component {
             {this.state.messages.map((messages, id) => {
               console.log(messages._creator === this.state.user._id)
               return <>
-                <p>{messages._creator.username}</p>
+                <p className={messages._creator._id !== this.state.user._id && "titleDoctorChat"}>{messages._creator.username}</p>
                 <div key={id} className={messages._creator._id === this.state.user._id ? "speechbubble" : "speechbubble2"}>
                   {messages.content}
                 </div>
