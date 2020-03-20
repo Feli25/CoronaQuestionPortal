@@ -5,7 +5,7 @@ const userSchema = new Schema(
   {
     username: String,
     password: String,
-    userAuthorization: { type: String, enum: ["USER", "DOCTOR"], default: "DOCTOR" },
+    userAuthorization: { type: String, enum: ["USER", "DOCTOR"], default: "USER" },
   },
   {
     timestamps: {
