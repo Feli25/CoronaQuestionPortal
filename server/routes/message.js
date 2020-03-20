@@ -32,7 +32,7 @@ router.get('/chatByUser', (req, res, next) => {
 
 router.get('/messagesToChat/:chatId', (req, res, next) => {
   let chatId = req.params.chatId
-  Messages.find({ _chat: chatId })
+  Message.find({ _chat: chatId })
     .then(messages => {
       res.json(messages)
     })
