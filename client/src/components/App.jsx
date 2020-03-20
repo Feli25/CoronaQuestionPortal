@@ -47,7 +47,7 @@ export default class App extends Component {
       <ThemeProvider theme={theme}>
         <div className="App">
           <header className="App-header" style={{ marginBottom: 100 }}>
-            <h1 className="App-title">HS Be strong - Medizinische Hilfe</h1>
+            <h1 className="App-title">HS Be strong - Medizinische Online Hilfe</h1>
             <h3>Hallo {this.state.user ? this.state.user.username : "Anonymous"}</h3>
             <NavLink to="/">
               Home
@@ -66,10 +66,10 @@ export default class App extends Component {
           </header>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/doctor/allQuestions" component={AllQuestions} />
-            <Route path="/doctor/myChats" component={MyChats} />
-            <Route path="/user/myQuestions" component={MyQuestions} />
-            <Route path="/user/newQuestion" component={NewQuestion} />
+            <Route path="/doctor/allQuestions" component={(api.isLoggedIn() && api.isDoctor()) ? AllQuestions : Home} />
+          <Route path="/doctor/myChats" component={(api.isLoggedIn() && api.isDoctor()) ? MyChats : Home} />
+          <Route path="/user/myQuestions" component={(api.isLoggedIn() && api.isUser()) ? MyQuestions : Home} />
+          <Route path="/user/newQuestion" component={(api.isLoggedIn() && api.isUser()) ? NewQuestion : Home} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route render={() => <h2>404</h2>} />
