@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import api from '../../../api'
+import api from '../../../api';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { Typography } from '@material-ui/core';
 
 export default class NewQuestions extends Component {
   state = {
@@ -36,26 +39,37 @@ export default class NewQuestions extends Component {
     })
   }
   render() {
-    return <div>
-      NewQuestions users display here
+    return <div style={{ padding: 30 }}>
+      <Typography variant="h6">New Questions users display here</Typography>
       <form>
-        Titel der Frage:{' '}
-        <input
+        <TextField
+          variant="standard"
+          label="Titel der Frage"
           type="text"
           value={this.state.title}
           name="title"
           onChange={this.handleInputChange}
-        />{' '}
+          style={{ margin: 12 }}
+        />
         <br />
-        Inhalt:{' '}
-        <input
+        <TextField
+          variant="standard"
+          label="Inhalt"
           type="text"
           value={this.state.content}
           name="content"
           onChange={this.handleInputChange}
-        />{' '}
+          style={{ margin: 12 }}
+        />
         <br />
-        <button onClick={e => this.handleClick(e)}>Frage stellen</button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={e => this.handleClick(e)}
+          style={{ margin: 12 }}
+        >
+          Frage stellen
+        </Button>
       </form>
       {this.state.message && <div className="info">{this.state.message}</div>}
 

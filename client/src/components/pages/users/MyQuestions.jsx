@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from '../../../api'
 import ViewChat from '../ViewChat'
+import { Typography } from '@material-ui/core'
 
 export default class MyQuestions extends Component {
   state = {
@@ -29,10 +30,11 @@ export default class MyQuestions extends Component {
     })
   }
   render() {
-    return <div>MyQuestions users display here
+    return <div style={{ padding: 30 }}>
+      <Typography variant="h6">MyQuestions users display here</Typography>
       {this.state.myChats.map((chat, i) => {
-      return (<div key={i} onClick={() => this.openChat(chat._id)}>{chat.title}</div>)
-    })}
+        return (<div key={i} onClick={() => this.openChat(chat._id)}>{chat.title}</div>)
+      })}
       <ViewChat
         open={this.state.open}
         chatId={this.state.choosenChatId}

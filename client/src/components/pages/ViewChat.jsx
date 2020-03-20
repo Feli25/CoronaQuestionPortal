@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../api'
+import { Button, TextField } from '@material-ui/core'
 //TODO settimeout so it automatically updates
 export default class ViewChat extends Component {
   state = {
@@ -41,8 +42,8 @@ export default class ViewChat extends Component {
           </div>)
         })}<br />
       </div>
-      <input value={this.state.inputField} onChange={(e) => { this.setState({ inputField: e.target.value }) }} />
-      <button onClick={this.submitNewMessage}>Nachricht senden ></button>
+      <TextField value={this.state.inputField} onChange={(e) => { this.setState({ inputField: e.target.value }) }} />
+      <Button variant='contained' color='primary' onClick={this.submitNewMessage}>Nachricht senden ></Button>
     </dialog>
   }
 }
