@@ -20,18 +20,31 @@ export default class Signup extends Component {
 
   handleClick(e) {
     e.preventDefault()
-    let data = {
-      username: this.state.username,
-      password: this.state.password,
+    if (!this.state.username || !this.state.password) {
+      this.setState({ message: "Bitte alles ausfüllen" })
+    } else {
+      let data = {
+        username: this.state.username,
+        password: this.state.password,
+      }
+      api
+        .findUserByName(data.username)
+        .then(result => {
+          if (result.length === 0) {
+            api
+              .signup(data)
+              .then(result => {
+                console.log('SUCCESS!')
+                this.props.history.push('/') // Redirect to the home page
+                window.location.reload();
+              })
+              .catch(err => this.setState({ message: err.toString() }))
+          } else {
+            this.setState({ message: "Diesen Namen gibt es bereits" })
+          }
+        })
+
     }
-    api
-      .signup(data)
-      .then(result => {
-        console.log('SUCCESS!')
-        this.props.history.push('/') // Redirect to the home page
-        window.location.reload();
-      })
-      .catch(err => this.setState({ message: err.toString() }))
   }
 
   render() {

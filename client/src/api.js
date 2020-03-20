@@ -78,6 +78,13 @@ export default {
     return service.get('/logout')
   },
 
+  findUserByName(name) {
+    return service
+      .get('/message/findUsername/' + name)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   findAllChatsNoDoctor() {
     return service
       .get('/message/noChatDoctor')
