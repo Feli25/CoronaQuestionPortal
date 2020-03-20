@@ -1,8 +1,18 @@
 const express = require('express')
 const Chat = require('../models/Chat')
 const Message = require('../models/Message')
+const User = require('../models/User')
 
 const router = express.Router()
+
+router.get('/findUsername/:name', (req, res, next) => {
+  let name = req.params.name
+  User.find({ username: name })
+    .then(user => {
+      res.json(user)
+    })
+    .catch(err => next(err))
+})
 
 router.get('/noChatDoctor', (req, res, next) => {
   console.log("noChatDoctor")
