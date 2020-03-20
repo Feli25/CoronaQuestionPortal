@@ -104,9 +104,65 @@ body {
 }
 
 .classRight{
-  align-items: flex-end;
+  align-self: flex-end;
 }
 
 .classLeft{
-  align-items: flex-start;
+  align-self: flex-start;
+}
+.speechbubble{
+  width: 100px;
+  // margin: 20px auto;
+  background: #00bfb6;
+  padding: 15px;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  font-family: arial;
+  position: relative;
+  
+}
+.sb1{
+  margin:20px 30px 20px 90px;
+}
+.sb1:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #00bfb6;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #00bfb6;
+  border-bottom: 10px solid transparent;
+  right: -19px;
+  top: 6px;
+}
+.sb2{
+  margin:20px 90px 20px 30px;
+}
+.sb2:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #00bfb6;
+  border-top: 10px solid #00bfb6;
+  border-bottom: 10px solid transparent;
+  left: -19px;
+  top: 6px;
+}
+
+.chatBox{
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: lightgray;
+  width: 100px
+}
+.displayChatsBox{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

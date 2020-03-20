@@ -13,6 +13,7 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: api.getUser()
     }
   }
   handleLogoutClick(e) {
@@ -25,6 +26,7 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">HS Be strong - Medizinische Online Hilfe</h1>
+          <h3>Hallo {this.state.user ? this.state.user.username : "unknown"}</h3>
           <NavLink to="/" exact>
             Home
           </NavLink>

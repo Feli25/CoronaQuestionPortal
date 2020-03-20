@@ -35,8 +35,7 @@ export default class ViewChat extends Component {
       <button onClick={this.props.onClose}>X CLose</button><br /><br />
       <div className="messagesContainer">
         {this.state.messages.map((messages, id) => {
-          console.log(messages, messages._creator === this.state.user._id)
-          return (<div key={id} className={messages._creator === this.state.user._id ? "classRight" : "classLeft"}>
+          return (<div key={id} className={messages._creator === this.state.user._id ? "speechbubble sb1" : "speechbubble sb2"}>
             {messages.content}
           </div>)
         })}<br />

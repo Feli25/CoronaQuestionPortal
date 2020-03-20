@@ -29,10 +29,12 @@ export default class MyQuestions extends Component {
     })
   }
   render() {
-    return <div>MyQuestions users display here
+    return <div className="displayChatsBox">
+      Explanation: Here the user can see all his done questions and read the answers from the doctors!<br />
       {this.state.myChats.map((chat, i) => {
-      return (<div key={i} onClick={() => this.openChat(chat._id)}>{chat.title}</div>)
-    })}
+        return (<div key={i} onClick={() => this.openChat(chat._id)} className="chatBox">
+          {chat.title}</div>)
+      })}
       <ViewChat
         open={this.state.open}
         chatId={this.state.choosenChatId}
