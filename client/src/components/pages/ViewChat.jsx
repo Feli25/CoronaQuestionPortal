@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import api from '../../api'
-import { Button, TextField } from '@material-ui/core'
+import api from '../../api';
+import { TextField, Dialog, DialogTitle, DialogContentText, DialogActions, DialogContent } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import SendIcon from '@material-ui/icons/Send';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 //TODO settimeout so it automatically updates
 export default class ViewChat extends Component {
   state = {
@@ -37,20 +40,41 @@ export default class ViewChat extends Component {
     this.props.onClose()
   }
   render() {
-    return <dialog open={this.props.open} onClose={this.props.onClose} className="chatPopup">
-      <button onClick={this.onClose}>X Schließen</button><br /><br />
-      <div className="messagesContainer">
-        {this.state.messages.map((messages, id) => {
-          console.log(messages._creator === this.state.user._id)
-          return (<div key={id} className={messages._creator._id === this.state.user._id ? "speechbubble sb1" : "speechbubble sb2"}>
-            {messages._creator.username}:<br />
-            {messages.content}
-          </div>)
-        })}<br />
-      </div>
-      <TextField value={this.state.inputField} onChange={(e) => { this.setState({ inputField: e.target.value }) }} />
-      <Button variant='contained' color='primary' onClick={this.submitNewMessage}>Nachricht senden ></Button>
-      <Button variant='contained' onClick={this.onClose}>X Schließen</Button>
-    </dialog>
+    return <Dialog fullWidth={true} scroll="paper" open={this.props.open} onClose={this.props.onClose}>
+      <DialogTitle id="scroll-dialog-title" style={{ justifyContent: 'center' }}>
+        {/* <span>Your Chat</span> */}
+        <IconButton onClick={this.onClose} aria-label="upload picture" component="span" style={{ float: 'right' }}>
+          <HighlightOffIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent style={{ maxHeight: 600 }}>
+        <DialogContentText>
+          <div className="messagesContainer">
+            {this.state.messages.map((messages, id) => {
+              console.log(messages._creator === this.state.user._id)
+              return <>
+                <p>{messages._creator.username}</p>
+                <div key={id} className={messages._creator._id === this.state.user._id ? "speechbubble" : "speechbubble2"}>
+                  {messages.content}
+                </div>
+              </>
+
+            })}<br />
+          </div>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions style={{ borderTop: '1px solid silver' }}>
+        <TextField
+          fullWidth={true}
+          variant='outlined'
+          label="Type your message"
+          value={this.state.inputField}
+          onChange={(e) => { this.setState({ inputField: e.target.value }) }}
+        />
+        <IconButton onClick={this.submitNewMessage} color="primary" aria-label="upload picture" component="span">
+          <SendIcon />
+        </IconButton>
+      </DialogActions>
+    </Dialog>
   }
 }
