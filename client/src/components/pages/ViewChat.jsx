@@ -31,8 +31,8 @@ export default class ViewChat extends Component {
     this.updateMessages()
   }
   render() {
-    return <dialog open={this.props.open} onClose={this.props.onClose}>
-      <button onClick={this.props.onClose}>X CLose</button><br /><br />
+    return <dialog open={this.props.open} onClose={this.props.onClose} className="chatPopup">
+      <button onClick={this.props.onClose}>X Schließen</button><br /><br />
       <div className="messagesContainer">
         {this.state.messages.map((messages, id) => {
           return (<div key={id} className={messages._creator === this.state.user._id ? "speechbubble sb1" : "speechbubble sb2"}>
