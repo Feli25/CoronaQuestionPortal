@@ -37,7 +37,8 @@ export default class NewQuestions extends Component {
   }
   render() {
     return <div>
-      NewQuestions users display here
+      Explanation: Users can create new questions here<br />
+      Hier können Sie eine neue Frage stellen! Diese wird dann so schnell wie möglich von unseren Ärzten beantwortet!<br />
       <form>
         Titel der Frage:{' '}
         <input

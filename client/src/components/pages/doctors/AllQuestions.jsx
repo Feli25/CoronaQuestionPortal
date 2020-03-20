@@ -17,13 +17,15 @@ export default class AllQuestions extends Component {
     api.addDoctorToChat(chatId)
   }
   render() {
-    return <div>AllQuestions doctors display here
+    return <div>
+      Explanation: All doctors can see all questions here and take one to their own and answer import PropTypes from 'prop-types'
+      Hier sehen sie alle offenen Fragen. Wenn sie auf Frage annehmen und beantworten klicken, wird die Frage
       {this.state.opendChats.map((chat, i) => {
-      return (<div key={i}>
-        {chat.title}
-        <button onClick={(e) => this.acceptChat(chat._id)}>Frage annehmen und beantworten</button>
-      </div>)
-    })}
+        return (<div key={i}>
+          {chat.title}
+          <button onClick={(e) => this.acceptChat(chat._id)}>Frage annehmen und beantworten</button>
+        </div>)
+      })}
     </div>
   }
 }

@@ -26,7 +26,7 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">HS Be strong - Medizinische Online Hilfe</h1>
-          <h3>Hallo {this.state.user ? this.state.user.username : "unknown"}</h3>
+          <h3>Hallo {this.state.user ? this.state.user.username : "Anonymous"}</h3>
           <NavLink to="/" exact>
             Home
           </NavLink>
