@@ -7,6 +7,7 @@ const router = express.Router()
 router.get('/noChatDoctor', (req, res, next) => {
   console.log("noChatDoctor")
   Chat.find({ _doctor: null })
+    .populate('_user')
     .then(chats => {
       console.log("answer", chats)
       res.json(chats)
@@ -16,6 +17,7 @@ router.get('/noChatDoctor', (req, res, next) => {
 
 router.get('/chatByDoctor', (req, res, next) => {
   Chat.find({ _doctor: req.user._id })
+    .populate('_user')
     .then(chats => {
       res.json(chats)
     })
@@ -24,6 +26,7 @@ router.get('/chatByDoctor', (req, res, next) => {
 
 router.get('/chatByUser', (req, res, next) => {
   Chat.find({ _user: req.user._id })
+    .populate('_doctor')
     .then(chats => {
       res.json(chats)
     })
@@ -33,6 +36,7 @@ router.get('/chatByUser', (req, res, next) => {
 router.get('/messagesToChat/:chatId', (req, res, next) => {
   let chatId = req.params.chatId
   Message.find({ _chat: chatId })
+    .populate('_creator')
     .then(messages => {
       res.json(messages)
     })

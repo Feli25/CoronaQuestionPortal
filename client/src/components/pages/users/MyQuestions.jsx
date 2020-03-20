@@ -33,7 +33,7 @@ export default class MyQuestions extends Component {
       Explanation: Here the user can see all his done questions and read the answers from the doctors!<br />
       {this.state.myChats.map((chat, i) => {
         return (<div key={i} onClick={() => this.openChat(chat._id)} className="chatBox">
-          {chat.title}</div>)
+          {chat.title}{chat._doctor && chat._doctor.username && " bearbeitet von " + chat._doctor.username}</div>)
       })}
       <ViewChat
         open={this.state.open}

@@ -29,10 +29,10 @@ export default class MyChats extends Component {
     })
   }
   render() {
-    return <div>MyChats doctors display here
+    return <div>Here the doctor can see all the chats he took to answer and answer the messages by clicking on the chat
       {this.state.myChats.map((chat, id) => {
       return (<div key={id} onClick={() => this.openChat(chat._id)}>
-        {chat.title}
+        {chat.title} by {chat._user.username}
       </div>)
     })}
       <ViewChat
