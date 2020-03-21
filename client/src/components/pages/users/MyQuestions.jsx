@@ -30,19 +30,27 @@ export default class MyQuestions extends Component {
     })
   }
   render() {
-    return <div style={{ padding: 30 }} className="displayChatsBox">
+    return <div className="displayChatsBox">
       <Typography variant="h6">
-        Hier sehen Sie alle Ihre Fragen. Klicken Sie auf die Frage um den kompletten Chat zu sehen!
+        Hier sehen Sie alle Ihre Fragen. <br />
+        Klicken Sie auf die Frage um den kompletten Chat zu sehen!
       </Typography>
-      {this.state.myChats.map((chat, i) => {
-        return (<div key={i} onClick={() => this.openChat(chat._id)} className="chatBox">
-          {chat.title}{chat._doctor && chat._doctor.username && " bearbeitet von " + chat._doctor.username}</div>)
-      })}
+      <div className="chatBox">
+        {this.state.myChats.map((chat, i) => {
+          return (
+            <div key={i} onClick={() => this.openChat(chat._id)} className="chatTitle">
+              {chat.title}
+              <span>
+                {chat._doctor && chat._doctor.username && " bearbeitet von " + chat._doctor.username}
+              </span>
+            </div>)
+        })}
+      </div>
       <ViewChat
         open={this.state.open}
-        chatId={this.state.choosenChatId}
         onClose={this.closeChat}
+        chatId={this.state.choosenChatId}
       />
-    </div>
+    </div >
   }
 }

@@ -9,16 +9,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import api from '../api'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid"
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#007BA7',
-    },
-    secondary: {
-      main: '#02e2f2'
-    }
-  },
   typography: {
     fontFamily: [
       'Nunito',
@@ -46,30 +39,36 @@ export default class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="App">
-          <header className="App-header" style={{ marginBottom: 100 }}>
-            <h1 className="App-title">HS Be strong - Medizinische Online Hilfe</h1>
-            <h3>Hallo {this.state.user ? this.state.user.username : "Anonymous"}</h3>
-            <NavLink to="/">
-              Home
-            </NavLink>
-            {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
-            {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-            {api.isLoggedIn() && api.isDoctor() && <NavLink to="/doctor/allQuestions">Alle Unbeantworteten Fragen</NavLink>}
-            {api.isLoggedIn() && api.isDoctor() && <NavLink to="/doctor/myChats">Meine Chats</NavLink>}
-            {api.isLoggedIn() && api.isUser() && <NavLink to="/user/myQuestions">Meine Fragen</NavLink>}
-            {api.isLoggedIn() && api.isUser() && <NavLink to="/user/newQuestion">Neue Frage erstellen</NavLink>}
-            {api.isLoggedIn() && (
-              <Link to="/" onClick={e => this.handleLogoutClick(e)}>
-                Logout
-              </Link>
-            )}
+          <header>
+            <Grid container justify="space-between" alignContent='center'>
+              <h1 className="App-title">HS Be strong | Medizinische Online Hilfe</h1>
+              <h3 className="username">Hallo {this.state.user ? this.state.user.username : "Anonymous"}</h3>
+            </Grid>
           </header>
+          <Grid container justify='center'>
+            <nav className="navbar">
+              <NavLink to="/">
+                Home
+                </NavLink>
+              {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
+              {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+              {api.isLoggedIn() && api.isDoctor() && <NavLink to="/doctor/allQuestions">Alle Unbeantworteten Fragen</NavLink>}
+              {api.isLoggedIn() && api.isDoctor() && <NavLink to="/doctor/myChats">Meine Chats</NavLink>}
+              {api.isLoggedIn() && api.isUser() && <NavLink to="/user/myQuestions">Meine Fragen</NavLink>}
+              {api.isLoggedIn() && api.isUser() && <NavLink to="/user/newQuestion">Neue Frage erstellen</NavLink>}
+              {api.isLoggedIn() && (
+                <Link to="/" onClick={e => this.handleLogoutClick(e)}>
+                  Logout
+                </Link>
+              )}
+            </nav>
+          </Grid>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/doctor/allQuestions" component={(api.isLoggedIn() && api.isDoctor()) ? AllQuestions : Home} />
-          <Route path="/doctor/myChats" component={(api.isLoggedIn() && api.isDoctor()) ? MyChats : Home} />
-          <Route path="/user/myQuestions" component={(api.isLoggedIn() && api.isUser()) ? MyQuestions : Home} />
-          <Route path="/user/newQuestion" component={(api.isLoggedIn() && api.isUser()) ? NewQuestion : Home} />
+            <Route path="/doctor/myChats" component={(api.isLoggedIn() && api.isDoctor()) ? MyChats : Home} />
+            <Route path="/user/myQuestions" component={(api.isLoggedIn() && api.isUser()) ? MyQuestions : Home} />
+            <Route path="/user/newQuestion" component={(api.isLoggedIn() && api.isUser()) ? NewQuestion : Home} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route render={() => <h2>404</h2>} />

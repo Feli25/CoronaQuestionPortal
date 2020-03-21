@@ -1,6 +1,11 @@
 // --------------------
 // Definition of variables
 $primary: #32c3ff;
+$break-small: 500px;
+$phone-font: 12px;
+$mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
 
 // ----------------------------------------
 // To install Boostrap:
@@ -20,11 +25,10 @@ $primary: #32c3ff;
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: $mainFont;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 @font-face {
@@ -59,44 +63,84 @@ body {
 .App {
   text-align: center;
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-
-  .App-header {
-    background-color: $primary;
-    padding: 20px;
-    color: white;
+  .navbar {
+    padding: 15px;
+    margin: 100px auto;
+    display:flex;
+    justify-content: space-around;
 
     a {
-      color: white;
-      padding: 0 5px;
+      color: rgb(5, 5, 53);
+      padding: 0 15px;
       text-decoration: unset;
+      &.active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
     }
 
-    a.active {
-      font-weight: bold;
-    }
   }
-
   .App-title {
     font-size: 1.5em;
+    font-family: 'Gotu', sans-serif;
+    @media screen and (max-width: $break-small) {
+      font-size: $phone-font;
+    }
   }
-
   .App-intro {
     font-size: large;
   }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
+  .username{
+    padding-top: 10px;
+    font-size: 1rem;
+    @media screen and (max-width: $break-small) {
+      font-size: $phone-font;
     }
   }
+}
+
+.login{
+  form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .input{
+        margin: 12px;
+        flex: 6;
+        font-family: $mainFont;
+        font-size: 1rem;
+          &:focus {
+            outline:0;
+          }
+      }
+  }
+}
+
+.signup{
+  form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .input{
+        margin: 12px;
+        flex: 6;
+        font-family: $mainFont;
+        font-size: 1rem;
+          &:focus {
+            outline:0;
+          }
+      }
+  }
+}
+
+header{
+  position: absolute;
+  display: block;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  box-shadow: 0px 4px 12px rgba(0,0,200,0.05);
+  padding:0px 60px;
 }
 
 // --------------------
@@ -116,11 +160,6 @@ body {
   }
 }
 
-.messagesContainer{
-  display: flex;
-  flex-direction: column;
-}
-
 .classRight{
   align-self: flex-end;
 }
@@ -128,39 +167,96 @@ body {
 .classLeft{
   align-self: flex-start;
 }
-.titleDoctorChat {
-  position: relative;
-  left:88%;
+
+.messagesContainer{
+  display: flex;
+  flex-direction: column;
+  // align-items: flex-end;
+
+  .bubbleWraper2{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: flex-start;
+    p{
+      font-size: 0.8rem;
+      margin-bottom:-2px;
+    }
+    .speechbubble2{
+      box-shadow: 1px 1px 3px gray;
+      // background: linear-gradient(180deg, #4DC3F8,rgb(57, 159, 206));
+      border-radius: 0 22px 22px 22px;
+      padding: 10px 15px;
+      font-weight: 500;
+      color: #fff;
+      color: black;
+      font-family: arial;
+      text-align: left;
+    }
+  }
+  .bubbleWraper{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: flex-end;
+    p{
+      font-size: 0.8rem;
+      margin-bottom:-2px;
+    }
+    .speechbubble{
+      margin:0 1px;
+      background: linear-gradient(180deg, rgb(216, 243, 255),rgb(162, 221, 249));
+      // background: linear-gradient(180deg, rgba(128, 228, 250, 0.55),rgba(12, 235, 238, 0.468));
+      border-radius: 22px 22px 0 22px;
+      padding: 10px 15px;
+      font-weight: 500;
+      color: black;
+      font-family: arial;
+      position: relative;
+      text-align: left;
+    }
+  }
 }
-.speechbubble{
-  width: 80%;
-  background: linear-gradient(180deg, #4DC3F8,rgb(57, 159, 206));
-  border-radius: 0 7px 7px 7px;
-  padding: 15px;
-  font-weight: 700;
-  color: #fff;
-  font-family: arial;
-  position: relative;
-}
-.speechbubble2{
-  width: 80%;
-  background: linear-gradient(45deg, rgb(77, 154, 248),rgb(72, 146, 237));
-  border-radius: 7px 0 7px 7px;
-  padding: 15px;
-  font-weight: 700;
-  color: #fff;
-  font-family: arial;
-  position: relative;
-  left:80px;
+.inputWrap{
+  box-shadow: 0px -5px 12px aliceblue;
+  .inputChat{
+    margin-left: 12px;
+    flex: 6;
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 50px;
+    border: none;
+    font-family: $mainFont;
+    font-size: 1rem;
+      &:focus {
+        outline:0;
+      }
+  }
 }
 
 .chatBox{
-  border: 4px;
-  border-radius: 7px;
-  background: lightgray;
-  width: 300px;
-  padding:10px;
-  margin:20px auto;
+  flex: 1;
+  margin-top:35px;
+  box-shadow: 0px 0px 1px gray, 0px 2px 2px silver;
+  border-radius: 5px;
+
+  .chatTitle{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    background: rgb(255, 255, 255);
+    width: 300px;
+    padding:20px;
+    text-align: left;
+    &:hover{
+      cursor: pointer;
+      background:linear-gradient(#58ffff0d, rgba(0, 161, 255, 0.25));
+    }
+    span{
+      font-size:0.8rem;
+    }
+  }
 }
 .displayChatsBox{
   width:100%;
