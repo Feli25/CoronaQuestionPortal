@@ -21,7 +21,11 @@ export default class AllQuestions extends Component {
   acceptChat = (chatId) => {
     console.log("acceptingChat")
     api.addDoctorToChat(chatId)
-    this.findChats()
+      .then(response=>{
+        this.findChats()
+        // window.location.reload()
+      })
+      .catch(err=>console.log(err))
   }
   render() {
     return <div>
