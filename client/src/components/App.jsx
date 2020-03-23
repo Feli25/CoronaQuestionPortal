@@ -7,6 +7,7 @@ import AllQuestions from './pages/doctors/AllQuestions'
 import MyChats from './pages/doctors/MyChats'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Impressum from './pages/Impressum'
 import api from '../api'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid"
@@ -61,6 +62,9 @@ export default class App extends Component {
                   Logout
                 </Link>
               )}
+              <NavLink to="/impressum">
+                Impressum
+                </NavLink>
             </nav>
           </Grid>
           <Switch>
@@ -71,6 +75,7 @@ export default class App extends Component {
             <Route path="/user/newQuestion" component={(api.isLoggedIn() && api.isUser()) ? NewQuestion : Home} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
+            <Route path="/impressum" component={Impressum} />
             <Route render={() => <h2>404</h2>} />
           </Switch>
         </div>
