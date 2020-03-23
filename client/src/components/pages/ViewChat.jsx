@@ -4,7 +4,7 @@ import { TextField, Dialog, DialogTitle, DialogContentText, DialogActions, Dialo
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-//TODO settimeout so it automatically updates
+
 export default class ViewChat extends Component {
   state = {
     messages: [],

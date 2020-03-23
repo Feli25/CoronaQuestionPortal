@@ -4,11 +4,7 @@ import { Typography } from '@material-ui/core'
 export default class Impressum extends Component {
   render() {
     return (
-      // <div className="Home" style={{ margin: 20, padding: 30 }}>
-      //   <Typography variant="h4">Wilkommen auf unserer Hilfeseite</Typography>
-      //   <p>Um Fragen an unsere Ärzte zu stellen müssen Sie einen Account erstellen(Signup)<br />
       <div className="Home" style={{ margin: 20, padding: 30 }}>
-        {/* <Typography variant="h4">Wilkommen auf unserer Hilfeseite</Typography> */}
         <p>
         Haftungsausschluss und allgemeiner Hinweis zu medizinischen Themen:
         <br/>Die hier dargestellten Inhalte und Antworten auf Ihre Fragen dienen ausschließlich der neutralen Information und allgemeinen Weiterbildung. Sie stellen keine Empfehlung oder Bewerbung der beschriebenen oder erwähnten diagnostischen Methoden, Behandlungen oder Arzneimittel dar. Der Text erhebt weder einen Anspruch auf Vollständigkeit noch kann die Aktualität, Richtigkeit und Ausgewogenheit der dargebotenen Information garantiert werden.

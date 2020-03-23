@@ -42,7 +42,7 @@ export default class App extends Component {
         <div className="App">
           <header>
             <Grid container justify="space-between" alignContent='center'>
-              <h1 className="App-title">HS Be strong | Medizinische Online Hilfe</h1>
+              <h1 className="App-title">HS Be strong | Medizinischer Online Kontakt</h1>
               <h3 className="username">Hallo {this.state.user ? this.state.user.username : "Anonymous"}</h3>
             </Grid>
           </header>

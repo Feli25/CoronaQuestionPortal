@@ -23,7 +23,6 @@ export default class AllQuestions extends Component {
     api.addDoctorToChat(chatId)
       .then(response=>{
         this.findChats()
-        // window.location.reload()
       })
       .catch(err=>console.log(err))
   }
