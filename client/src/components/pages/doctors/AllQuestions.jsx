@@ -1,55 +1,123 @@
 import React, { Component } from 'react'
 import api from '../../../api'
-import { Typography, Button, Card, CardContent, CardActions } from '@material-ui/core'
+import { Typography, Button, Card, CardContent, CardActions, CardHeader } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+
+const StyledButton = withStyles({
+	root: {
+		marginTop: 25,
+		background: 'rgba(6, 159, 249, 0.71)',
+		borderRadius: 7,
+		border: 0,
+		color: 'white',
+		height: 48,
+		fontSize: '1.1rem',
+		padding: '0 30px',
+		'&:hover': {
+			background: 'rgba(17, 184, 259, 0.71)',
+			boxShadow: '0px 2px 3px gray'
+		}
+	},
+	label: {
+		textTransform: 'capitalize',
+	},
+})(Button);
 
 export default class AllQuestions extends Component {
-  state = {
-    opendChats: []
-  }
-  componentDidMount() {
-    this.findChats()
-  }
-  findChats = () => {
-    console.log("findingChats and update")
-    api.findAllChatsNoDoctor()
-      .then(response => {
-        console.log(response)
-        this.setState({ opendChats: response })
-      })
-      .catch(err => console.log(err))
-  }
-  acceptChat = (chatId) => {
-    console.log("acceptingChat")
-    api.addDoctorToChat(chatId)
-    this.findChats()
-  }
-  render() {
-    return <div>
-      {/* Explanation: All doctors can see all questions here and take one to their own and answer open ones */}
-      Hier sehen sie alle offenen Fragen.<br />
-      <Typography>
-        Wenn sie auf Frage annehmen und beantworten klicken, wird die Frage unter Meine Chats verschoben!
+	state = {
+		opendChats: []
+	}
+	componentDidMount() {
+		this.findChats()
+	}
+	findChats = () => {
+		console.log("findingChats and update")
+		api.findAllChatsNoDoctor()
+			.then(response => {
+				console.log(response)
+				this.setState({ opendChats: response })
+			})
+			.catch(err => console.log(err))
+	}
+	acceptChat = (chatId) => {
+		console.log("acceptingChat")
+		api.addDoctorToChat(chatId)
+		this.findChats()
+	}
+	renderSwitch(month) {
+		switch (month) {
+			case '01':
+				return 'Jan';
+			case '02':
+				return 'Feb';
+			case '03':
+				return 'Mar';
+			case '04':
+				return 'Apr';
+			case '05':
+				return 'Mac';
+			case '06':
+				return 'Jun';
+			case '07':
+				return 'Jul';
+			case '08':
+				return 'Ago';
+			case '09':
+				return 'Sep';
+			case '10':
+				return 'Oct';
+			case '11':
+				return 'Nov';
+			case '12':
+				return 'Dec';
+			default:
+				return '';
+		}
+	}
+	chatList() {
+		return <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'wrap', margin: 'auto', maxWidth: 900 }}>
+			{this.state.opendChats.map((chat, i) => {
+				var date = chat.created_at;
+				var str = date.replace(/[^a-z0-9]/g, '.');
+				var day = str.slice(8, 10);
+				var month = date.slice(5, 7);
+				var year = str.slice(0, 4);
+				var m = this.renderSwitch(month);
+
+				return <Card key={i} style={{ margin: 20, padding: 20 }}>
+					<CardHeader
+						title={chat._user.username}
+						subheader={`${m}, ${day}.${year}`}
+					/>
+					<CardContent>
+						<Typography>
+							{chat.title}
+						</Typography>
+					</CardContent>
+					<CardActions>
+						<StyledButton
+							variant='contained'
+							onClick={(e) => this.acceptChat(chat._id)}
+						>
+							Frage annehmen und beantworten
+							</StyledButton>
+					</CardActions>
+				</Card>
+			})}
+		</div>
+	}
+	render() {
+		return <div>
+			{/* Explanation: All doctors can see all questions here and take one to their own and answer open ones */}
+			<Typography variant='h4'>
+				Hier sehen sie alle offenen Fragen.
+			</Typography>
+			<Typography variant='h5'>
+				Wenn sie auf Frage annehmen und beantworten klicken, wird die Frage unter Meine Chats verschoben!
       </Typography>
-      {this.state.opendChats.map((chat, i) => {
-        return (<div key={i}>
-          <Card>
-            <CardContent>
-              <Typography variant="body2" component="p">
-                {chat.title} von {chat._user.username}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button
-              style={{margin:"auto"}}
-                variant='contained'
-                onClick={(e) => this.acceptChat(chat._id)}
-              >
-                Frage annehmen und beantworten
-              </Button>
-            </CardActions>
-          </Card>
-        </div>)
-      })}
-    </div>
-  }
+			<div style={{ margin: 80, maxHeight: 650, overflowY: 'auto' }}>
+				{this.chatList()}
+			</div>
+		</div>
+	}
 }
