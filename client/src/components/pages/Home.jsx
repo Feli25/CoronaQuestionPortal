@@ -7,7 +7,7 @@ export default class Home extends Component {
 			<div className="Home">
 				<div className="homeContainer">
 					<div>
-						<Typography variant="h2">Wilkommen <br />auf unserer Hilfeseite</Typography>
+						<Typography variant="h3">Wilkommen <br />auf unserer Hilfeseite</Typography>
 						<Typography>
 							Herzlich Willkommen auf der Seite für Medizinische Online Hilfe zum Thema COVID-19 im Kreis Heinsberg!
 							<br />Wir werden hier nach bestem Wissen und Gewissen eure Fragen rund um eure gesundheitlichen Probleme beantworten!
